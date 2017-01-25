@@ -1,47 +1,45 @@
-#-*-coding: utf-8 -*-
+from flask import Flask, request, abort
 
-from flask import Flask, request
-import json
-import requests
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return "Hello World!"
-# ส่วน callback สำหรับ Webhook
-@app.route('/callback', methods=['POST'])
+line_bot_api = LineBotApi('3NSrwxoBmoc/JzYfi/TeeAWDfjMXPkl+pK2smX+/wlptcnGgM/ysws0jfUfuaXInCd8/tPGW4MhzFYTyXlGB/8Ue8p8irgrbaXnFk8dz6vGieKqDaPgzPfI2SgrjG7f+dJ9+J+sbGISzY+GGSa07gwdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('d47d8ecbdda055d3e577e5bc0cd7db97')
+
+
+@app.route("/callback", methods=['POST'])
 def callback():
-    json_line = request.get_json()
-    json_line = json.dumps(json_line)
-    decoded = json.loads(json_line)
-    user = decoded["events"][0]['replyToken']
-    #id=[d['replyToken'] for d in user][0]
-    #print(json_line)
-    print("ผู้ใช้：",user)
-    sendText(user,'งง') # ส่งข้อความ งง
-    return '',200
+    # get X-Line-Signature header value
+    signature = request.headers['X-Line-Signature']
 
-def sendText(user, text):
-    LINE_API = 'https://api.line.me/v2/bot/message/reply'
-    Authorization = '3NSrwxoBmoc/JzYfi/TeeAWDfjMXPkl+pK2smX+/wlptcnGgM/ysws0jfUfuaXInCd8/tPGW4MhzFYTyXlGB/8Ue8p8irgrbaXnFk8dz6vGieKqDaPgzPfI2SgrjG7f+dJ9+J+sbGISzY+GGSa07gwdB04t89/1O/w1cDnyilFU=' # ใส่ ENTER_ACCESS_TOKEN เข้าไป
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
 
-    headers = {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization':Authorization
-    }
+    # handle webhook body
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
 
-    data = json.dumps({
-        "replyToken":user,
-        "messages":[{
-            "type":"text",
-            "text":text
-        }]
-    })
+    return 'OK'
 
-    #print("ข้อมูล：",data)
-    r = requests.post(LINE_API, headers=headers, data=data) # ส่งข้อมูล
-    #print(r.text)
 
-if __name__ == '__main__':
-     app.run(debug=True)
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
+
+
+if __name__ == "__main__":
+    app.run()
