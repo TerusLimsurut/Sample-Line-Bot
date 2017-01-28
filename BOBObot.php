@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])
 			//[($data_ary[0])[1]
-			if ($messages=='a'){
+			if ($text=='a'){
 				$messages = [
 					'type' => 'text',
 					'text' => 'b'
