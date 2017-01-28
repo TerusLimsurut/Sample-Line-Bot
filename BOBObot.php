@@ -11,7 +11,7 @@ $data_ary=array("u");
   //$line is an array of the csv elements
 //  $data_ary = array_push($data_ary, $line);
 //}
-echo $data_ary;
+print_r($data_ary);
 fclose($file);
 if (!is_null($events['events'])) {
 	// Loop through each event
