@@ -12,7 +12,7 @@ $data_ary=array("test");
 while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
   //print_r($line);
-  $data_ary[$i+1]= $line);
+  array_push($data_ary, $line);
   $i++;
 }
 print_r($data_ary[1]);
