@@ -7,7 +7,7 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 $file = fopen('data_test.csv', 'r');
 $i=0;
-$data_ary=array()
+$data_ary=array("")
 //while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
 //  $data_ary = array_push($data_ary, $line);
