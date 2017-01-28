@@ -7,10 +7,10 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 $file = fopen('data_test.csv', 'r');
 $data_ary=array("u");
-//while (($line = fgetcsv($file)) !== FALSE) {
+while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
-//  $data_ary = array_push($data_ary, $line);
-//}
+  $data_ary = array_push($data_ary, $line);
+}
 print_r($data_ary);
 fclose($file);
 if (!is_null($events['events'])) {
