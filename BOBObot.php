@@ -22,7 +22,7 @@ fclose($file);
 
 $data = [
 	'replyToken' => $replyToken,
-	'messages' => ["สอนฉันหน่อย"],
+	'messages' => ["Teach"],
 	];
 
 if (!is_null($events['events'])) {
