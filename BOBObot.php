@@ -41,7 +41,7 @@ if (!is_null($events['events'])) {
 			//[($data_ary[0])[1]
 			$data = [
 				'replyToken' => $replyToken,
-				'messages' => ["สอนฉันหน่อย"],
+				'messages' => ["TeachMe"],
 				];
 			for ($j = 0; $j < 3; $j=$j+1) {
 				if ($text==$data_ary[$j][0]){
