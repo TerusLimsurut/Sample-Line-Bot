@@ -20,10 +20,6 @@ while (($line = fgetcsv($file)) !== FALSE) {
 echo $data_ary[1][0];
 fclose($file);
 
-$data = [
-	'replyToken' => $replyToken,
-	'messages' => ["Teach"],
-	];
 
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -43,6 +39,10 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
+			$data = [
+				'replyToken' => $replyToken,
+				'messages' => ["สอนฉันหน่อย"],
+				];
 			for ($j = 0; $j < 3; $j=$j+1) {
 				if ($text==$data_ary[$j][0]){
 					$messages = [
