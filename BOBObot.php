@@ -15,7 +15,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
   array_push($data_ary, $line);
   $i++;
 }
-print_r($data_ary[1]);
+#print_r($data_ary[1]);
 fclose($file);
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -33,10 +33,12 @@ if (!is_null($events['events'])) {
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
+			if $messages==($data_ary[0])[0]{
 			$data = [
 				'replyToken' => $replyToken,
-				'messages' => [$messages],
+				'messages' => [($data_ary[0])[1],
 			];
+			}
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 			$ch = curl_init($url);
