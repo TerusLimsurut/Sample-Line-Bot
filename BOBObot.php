@@ -10,7 +10,7 @@ $file = fopen('data_test.csv', 'r');
 $i=0;
 while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
-  array_push($data_ary[$line[$i]], $line);
+  array_push($data_ary[$line[0]], $line);
   $i++;
 }
 print_r($data_ary["b"]);
