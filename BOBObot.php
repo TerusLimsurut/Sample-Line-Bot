@@ -39,9 +39,13 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
+			$messages = [
+					'type' => 'text',
+					'text' => "สอนฉันหน่อย"
+				];
 			$data = [
 				'replyToken' => $replyToken,
-				'messages' => ["TeachMe"],
+				'messages' => [$messages],
 				];
 			for ($j = 0; $j < 3; $j=$j+1) {
 				if ($text==$data_ary[$j][0]){
