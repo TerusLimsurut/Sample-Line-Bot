@@ -41,7 +41,7 @@ if (!is_null($events['events'])) {
 				if ($text==$data_ary[1][0]){
 					$messages = [
 						'type' => 'text',
-						'text' => '$data_ary[1][1]
+						'text' => $data_ary[1][1]
 					];
 					$data = [
 						'replyToken' => $replyToken,
