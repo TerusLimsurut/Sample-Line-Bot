@@ -37,18 +37,18 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
-			//for ($j = 0; $j < 3; $j=$j+1) {
-				if ($text==$data_ary[1][0]){
+			for ($j = 0; $j < 3; $j=$j+1) {
+				if ($text==$data_ary[$j][0]){
 					$messages = [
 						'type' => 'text',
-						'text' => $data_ary[1][1]
+						'text' => $data_ary[$j][1]
 					];
 					$data = [
 						'replyToken' => $replyToken,
 						'messages' => [$messages],
 					];
 				}
-			//}
+			}
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 			$ch = curl_init($url);
