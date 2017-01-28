@@ -19,6 +19,12 @@ while (($line = fgetcsv($file)) !== FALSE) {
 #print_r($data_ary[1]);
 echo $data_ary[1][0];
 fclose($file);
+
+$data = [
+	'replyToken' => $replyToken,
+	'messages' => ["สอนฉันหน่อย"],
+	];
+
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
@@ -47,11 +53,6 @@ if (!is_null($events['events'])) {
 						'replyToken' => $replyToken,
 						'messages' => [$messages],
 					];
-				}
-				else{
-					$data = [
-						'replyToken' => $replyToken,
-						'messages' => ["สอนฉันหน่อย"],
 				}
 			}
 			$post = json_encode($data);
