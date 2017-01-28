@@ -11,7 +11,7 @@ $i=0;
 $data_ary[0]=array("test");
 while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
-  array_push($data_ary[$i+1], array($line));
+  array_push($data_ary[$i+1], $line);
   $i++;
 }
 print_r($data_ary);
