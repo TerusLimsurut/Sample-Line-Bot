@@ -8,7 +8,7 @@ $events = json_decode($content, true);
 $file = fopen('data_test.csv', 'r');
 //$data_ary=array("u");
 $i=0;
-$data_ary=array("test");
+$data_ary=array(array('test','hello'));
 while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
   //print_r($line);
@@ -16,7 +16,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
   $i++;
 }
 #print_r($data_ary[1]);
-echo $data_ary[1][1];
+#echo $data_ary[1][1];
 fclose($file);
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -36,15 +36,17 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])
 			//[($data_ary[0])[1]
-			if ($text=='a'){
-				$messages = [
-					'type' => 'text',
-					'text' => 'b'
-				];
-				$data = [
-					'replyToken' => $replyToken,
-					'messages' => [$messages],
-				];
+			for ($j = 0; $j < 3; $j++) {
+				if ($text==$data_ary[$j][0]){
+					$messages = [
+						'type' => 'text',
+						'text' => '$data_ary[$j][1]
+					];
+					$data = [
+						'replyToken' => $replyToken,
+						'messages' => [$messages],
+					];
+				}
 			}
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
