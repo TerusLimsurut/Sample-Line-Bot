@@ -13,7 +13,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$i]= $temp
   $i = $i+1;
 }
-echo $data_ary[$i];
+echo $data_ary;
 fclose($file);
 if (!is_null($events['events'])) {
 	// Loop through each event
