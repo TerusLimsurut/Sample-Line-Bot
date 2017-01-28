@@ -14,7 +14,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
   array_push($data_ary[$i+1], array($line));
   $i++;
 }
-print_r($data_ary[1]);
+print_r($data_ary);
 fclose($file);
 if (!is_null($events['events'])) {
 	// Loop through each event
