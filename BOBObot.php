@@ -10,10 +10,10 @@ $file = fopen('data_test.csv', 'r');
 $i=0;
 while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
-  array_push($data_ary[$line[0]], $line);
+  array_push($data_ary[$i++], $line);
   $i++;
 }
-print_r($data_ary);
+print_r($data_ary[0]);
 fclose($file);
 if (!is_null($events['events'])) {
 	// Loop through each event
