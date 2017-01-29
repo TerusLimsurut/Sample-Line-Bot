@@ -52,7 +52,7 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$messages = [
 			    'type' => 'text',
-			    'text' => "สอนฉันหน่อย"
+			    'text' => "Teachme"
 			];
 			if (in_array($data_ary[$text], $data_ary)) {
 			    $messages = [
