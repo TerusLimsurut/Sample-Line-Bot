@@ -51,22 +51,20 @@ if (!is_null($events['events'])) {
 			    'type' => 'text',
 			    'text' => "สอนฉันหน่อย"
 			  ];
-			  $data = [
-			    'replyToken' => $replyToken,
-			    'messages' => [$messages],
-			  ];
+
  		      try {
 			  $messages = [
 			    'type' => 'text',
 			    'text' => $data_ary[$text][array_rand($data_ary['b'], 1)]
 			  ];
-			  $data = [
-			    'replyToken' => $replyToken,
-			    'messages' => [$messages],
-			  ];
+			  
  		      } catch (Exception $e) {
  			  echo "No key";
  		      }
+			$data = [
+			    'replyToken' => $replyToken,
+			    'messages' => [$messages],
+			 ];
 			
 //       try {
 //           $messages = [
