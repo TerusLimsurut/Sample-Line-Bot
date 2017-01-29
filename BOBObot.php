@@ -47,20 +47,19 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
-			$messages = [
-			    'type' => 'text',
-			    'text' => "สอนฉันหน่อย"
-			  ];
-
- 		      try {
-			  $messages = [
+			
+			if (in_array($text, $data_ary)) {
+			    $messages = [
 			    'type' => 'text',
 			    'text' => $data_ary[$text][array_rand($data_ary['b'], 1)]
 			  ];
-			  
- 		      } catch (Exception $e) {
- 			  echo "No key";
- 		      }
+			}
+			else {
+			    $messages = [
+			    'type' => 'text',
+			    'text' => "สอนฉันหน่อย"
+			  ];
+			}
 			$data = [
 			    'replyToken' => $replyToken,
 			    'messages' => [$messages],
