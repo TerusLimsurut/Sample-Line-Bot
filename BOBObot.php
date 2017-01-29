@@ -50,12 +50,32 @@ if (!is_null($events['events'])) {
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-
+			
+// 			try {
+// 			    $messages = [
+// 			    'type' => 'text',
+// 			    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
+// 			  ];
+// 			} catch (Exception $e) {
+// 			    $messages = [
+// 			    'type' => 'text',
+// 			    'text' => "TeachMe"
+// 			  ];
+// 			}
+			
 			if (in_array($data_ary[$text], $data_ary)) {
-			    $messages = [
-			    'type' => 'text',
-			    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
-			  ];
+				if (strlen($data_ary[$text])>1){
+					$messages = [
+					    'type' => 'text',
+					    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
+					  ];
+				} else{
+					$messages = [
+					    'type' => 'text',
+					    'text' => "TeachMe"
+					];
+				}
+
 			 $data = [
 			    'replyToken' => $replyToken,
 			    'messages' => [$messages]
@@ -71,6 +91,10 @@ if (!is_null($events['events'])) {
 			 ];
 			}
 			
+// 			$data = [
+// 			    'replyToken' => $replyToken,
+// 			    'messages' => [$messages]
+// 			 ];
 			
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
