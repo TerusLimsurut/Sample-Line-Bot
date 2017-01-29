@@ -19,6 +19,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
 }
 #print_r($data_ary[1]);
 echo $data_ary['a'];
+print_r($data_ary['a']);
 fclose($file);
 
 
