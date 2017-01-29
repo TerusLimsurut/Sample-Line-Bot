@@ -6,7 +6,7 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 //Train_message
-$file = fopen('Train_message.csv', 'r');
+$file = fopen('Train_message.txt', 'r');
 //$data_ary=array("u");
 //$i=0;
 //$f_test=array("test","hello");
@@ -18,7 +18,7 @@ $file = fopen('Train_message.csv', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
 }
-print_r($data_ary["555"]);
+#print_r($data_ary["555"]);
 //echo $data_ary['a'];
 //print_r($data_ary['a']);
 //echo $data_ary['b'][array_rand($data_ary['b'], 1)];
