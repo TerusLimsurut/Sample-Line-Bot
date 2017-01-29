@@ -18,7 +18,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
   $i++;
 }
-//print_r($data_ary[1]);
+print_r($data_ary);
 //echo $data_ary['a'];
 //print_r($data_ary['a']);
 echo array_rand($data_ary['b'], 1);
@@ -47,6 +47,14 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
+			$messages = [
+			    'type' => 'text',
+			    'text' => "สอนฉันหน่อย"
+			  ];
+			  $data = [
+			    'replyToken' => $replyToken,
+			    'messages' => [$messages],
+			  ];
  		      try {
 			  $messages = [
 			    'type' => 'text',
@@ -57,14 +65,7 @@ if (!is_null($events['events'])) {
 			    'messages' => [$messages],
 			  ];
  		      } catch (Exception $e) {
- 			  $messages = [
-			    'type' => 'text',
-			    'text' => "สอนฉันหน่อย"
-			  ];
-			  $data = [
-			    'replyToken' => $replyToken,
-			    'messages' => [$messages],
-			  ];
+ 			  echo "No key";
  		      }
 			
 //       try {
