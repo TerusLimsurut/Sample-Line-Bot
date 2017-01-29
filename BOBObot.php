@@ -11,12 +11,12 @@ $file = fopen('Train_message.csv', 'r');
 //$i=0;
 //$f_test=array("test","hello");
 //$data_ary=array($f_test);
-while (($line = fgetcsv($file)) !== FALSE) {
+
   //$line is an array of the csv elements
   //print_r($line);
   //array_push($data_ary, $line);
+while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
-  //$i++;
 }
 //print_r($data_ary);
 //echo $data_ary['a'];
