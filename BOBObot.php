@@ -64,7 +64,7 @@ if (!is_null($events['events'])) {
 // 			}
 			
 			if (in_array($data_ary[$text], $data_ary)) {
-				if (strlen($data_ary[$text])>1){
+				if (strlen($data_ary[$text][array_rand($data_ary[$text], 1)])>1){
 					$messages = [
 					    'type' => 'text',
 					    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
