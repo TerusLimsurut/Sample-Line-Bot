@@ -21,7 +21,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
 print_r($data_ary);
 //echo $data_ary['a'];
 //print_r($data_ary['a']);
-echo array_rand($data_ary['b'], 1);
+echo array_rand(($data_ary['b'])[0], 1);
 // fclose($file);
 // try {
 //   echo "hi";
