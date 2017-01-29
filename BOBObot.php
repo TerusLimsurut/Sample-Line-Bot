@@ -8,13 +8,13 @@ $events = json_decode($content, true);
 $file = fopen('data_test.csv', 'r');
 //$data_ary=array("u");
 $i=0;
-$f_test=array("test","hello");
-$data_ary=array($f_test);
+//$f_test=array("test","hello");
+//$data_ary=array($f_test);
 while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
   //print_r($line);
   //array_push($data_ary, $line);
-  $data_ary[$line[0]]=array_slice($line, 1, );
+  $data_ary[$line[0]]=array_slice($line, 1,3 );
   $i++;
 }
 #print_r($data_ary[1]);
