@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
-		      try {
+// 		      try {
 			  $messages = [
 			    'type' => 'text',
 			    'text' => array_rand($data_ary[$text], 1);
@@ -56,9 +56,9 @@ if (!is_null($events['events'])) {
 			    'replyToken' => $replyToken,
 			    'messages' => [$messages],
 			  ];
-		      } catch (Exception $e) {
-			  echo "awww";
-		      }
+// 		      } catch (Exception $e) {
+// 			  echo "awww";
+// 		      }
 //       try {
 //           $messages = [
 //             'type' => 'text',
