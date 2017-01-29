@@ -61,10 +61,10 @@ if (!is_null($events['events'])) {
 			    'messages' => [$messages]
 			 ];
 			} else{
-			$messages = [
+			    $messages = [
 			    'type' => 'text',
-			    'text' => "Teachme"
-			];
+			    'text' => "TeachMe"
+			  ];
 			 $data = [
 			    'replyToken' => $replyToken,
 			    'messages' => [$messages]
