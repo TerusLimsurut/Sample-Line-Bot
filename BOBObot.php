@@ -5,6 +5,7 @@ $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
+//Train_message
 $file = fopen('data_test.csv', 'r');
 //$data_ary=array("u");
 $i=0;
@@ -14,11 +15,11 @@ while (($line = fgetcsv($file)) !== FALSE) {
   //$line is an array of the csv elements
   //print_r($line);
   //array_push($data_ary, $line);
-  $data_ary[$line[0]]=array_slice($line, 1,3 );
+  $data_ary[$line[0]]=array_slice($line, 1);
   $i++;
 }
 #print_r($data_ary[1]);
-echo $data_ary['a'];
+//echo $data_ary['a'];
 print_r($data_ary['a']);
 fclose($file);
 
