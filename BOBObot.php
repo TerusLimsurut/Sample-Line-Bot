@@ -6,9 +6,9 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 //Train_message
-$file = fopen('data_test.csv', 'r');
+$file = fopen('Train_message.csv', 'r');
 //$data_ary=array("u");
-$i=0;
+//$i=0;
 //$f_test=array("test","hello");
 //$data_ary=array($f_test);
 while (($line = fgetcsv($file)) !== FALSE) {
@@ -16,7 +16,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
   //print_r($line);
   //array_push($data_ary, $line);
   $data_ary[$line[0]]=array_slice($line, 1);
-  $i++;
+  //$i++;
 }
 //print_r($data_ary);
 //echo $data_ary['a'];
@@ -48,8 +48,6 @@ if (!is_null($events['events'])) {
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-			//($data_ary[0])[0])   $data_ary[$j][0])
-			//[($data_ary[0])[1]
 			
 			if (in_array($data_ary[$text], $data_ary)) {
 			    $messages = [
@@ -68,26 +66,6 @@ if (!is_null($events['events'])) {
 			    'messages' => [$messages],
 			 ];
 			
-//       try {
-//           $messages = [
-//             'type' => 'text',
-//             'text' => array_rand($data_ary[$text], 1);
-//           ];
-//           $data = [
-//             'replyToken' => $replyToken,
-//             'messages' => [$messages],
-//           ];
-//       } catch (Exception $e) {
-//           $messages = [
-//             'type' => 'text',
-//             'text' => "สอนฉันหน่อย"
-//           ];
-//           $data = [
-//             'replyToken' => $replyToken,
-//             'messages' => [$messages],
-//           ];
-//       }
-      
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 			$ch = curl_init($url);
