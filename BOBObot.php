@@ -27,12 +27,12 @@ while (($line = fgetcsv($file)) !== FALSE) {
 // } catch (Exception $e) {
 //   echo "awww";
 // }
-if (in_array($data_ary["แอล"], $data_ary)) {
-	print_r($data_ary["แอล"]);
-}
-else{
-	echo "hi";
-}
+// if (in_array($data_ary["แอล"], $data_ary)) {
+// 	print_r($data_ary["แอล"]);
+// }
+// else{
+// 	echo "hi";
+// }
 
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -50,17 +50,14 @@ if (!is_null($events['events'])) {
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-			
+			$messages = [
+			    'type' => 'text',
+			    'text' => "สอนฉันหน่อย"
+			];
 			if (in_array($data_ary[$text], $data_ary)) {
 			    $messages = [
 			    'type' => 'text',
 			    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
-			  ];
-			}
-			else {
-			    $messages = [
-			    'type' => 'text',
-			    'text' => "สอนฉันหน่อย"
 			  ];
 			}
 			$data = [
