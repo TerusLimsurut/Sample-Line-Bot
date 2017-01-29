@@ -6,7 +6,7 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 //Train_message
-$file = fopen('Train_message.txt', 'r');
+$file = fopen('Train_message_2.txt', 'r');
 //$data_ary=array("u");
 //$i=0;
 //$f_test=array("test","hello");
