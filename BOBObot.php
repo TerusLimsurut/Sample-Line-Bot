@@ -58,7 +58,7 @@ if (!is_null($events['events'])) {
  		      try {
 			  $messages = [
 			    'type' => 'text',
-			    'text' => $data_ary['b'][array_rand($data_ary['b'], 1)]
+			    'text' => $data_ary[$text][array_rand($data_ary['b'], 1)]
 			  ];
 			  $data = [
 			    'replyToken' => $replyToken,
