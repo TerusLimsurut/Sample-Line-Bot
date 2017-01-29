@@ -28,9 +28,9 @@ print_r($data_ary);
 // } catch (Exception $e) {
 //   echo "awww";
 // }
-if (in_array($data_ary['a'], $data_ary)) {
-	echo "esssss";
-}
+// if (in_array($data_ary['a'], $data_ary)) {
+// 	echo "esssss";
+// }
 
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -51,10 +51,10 @@ if (!is_null($events['events'])) {
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
 			
-			if (in_array($text, $data_ary)) {
+			if (in_array($data_ary[$text], $data_ary)) {
 			    $messages = [
 			    'type' => 'text',
-			    'text' => $data_ary[$text][array_rand($data_ary['b'], 1)]
+			    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
 			  ];
 			}
 			else {
