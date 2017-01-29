@@ -18,9 +18,9 @@ while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
   $i++;
 }
-#print_r($data_ary[1]);
+//print_r($data_ary[1]);
 //echo $data_ary['a'];
-#print_r($data_ary['a']);
+//print_r($data_ary['a']);
 // echo array_rand($data_ary['a'], 1);
 // fclose($file);
 // try {
@@ -59,6 +59,7 @@ if (!is_null($events['events'])) {
 // 		      } catch (Exception $e) {
 // 			  echo "awww";
 // 		      }
+			
 //       try {
 //           $messages = [
 //             'type' => 'text',
