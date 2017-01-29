@@ -51,7 +51,7 @@ if (!is_null($events['events'])) {
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 
-			if ((in_array($data_ary[$text], $data_ary))==TRUE) {
+			if (in_array($data_ary[$text], $data_ary)) {
 			    $messages = [
 			    'type' => 'text',
 			    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
@@ -60,15 +60,14 @@ if (!is_null($events['events'])) {
 			    'replyToken' => $replyToken,
 			    'messages' => [$messages]
 			 ];
-			}
-			else{
+			} else{
 			$messages = [
 			    'type' => 'text',
 			    'text' => "Teachme"
 			];
 			 $data = [
 			    'replyToken' => $replyToken,
-			    'messages' => [$messages],
+			    'messages' => [$messages]
 			 ];
 			}
 			
