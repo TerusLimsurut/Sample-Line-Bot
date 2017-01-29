@@ -54,16 +54,21 @@ if (!is_null($events['events'])) {
 			    'type' => 'text',
 			    'text' => "Teachme"
 			];
-			if (in_array($data_ary[$text], $data_ary)) {
+			 $data = [
+			    'replyToken' => $replyToken,
+			    'messages' => [$messages],
+			 ];
+			if (TRUE==in_array($data_ary[$text], $data_ary)) {
 			    $messages = [
 			    'type' => 'text',
 			    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
 			  ];
-			}
-			$data = [
+			 $data = [
 			    'replyToken' => $replyToken,
-			    'messages' => [$messages],
+			    'messages' => [$messages]
 			 ];
+			}
+			
 			
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
