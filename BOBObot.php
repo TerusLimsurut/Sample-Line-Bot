@@ -28,7 +28,7 @@ print_r($data_ary);
 // } catch (Exception $e) {
 //   echo "awww";
 // }
-if (in_array('a', $data_ary)) {
+if (in_array($data_ary['a'], $data_ary)) {
 	echo "esssss";
 }
 
