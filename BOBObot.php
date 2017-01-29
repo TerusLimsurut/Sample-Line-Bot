@@ -21,13 +21,13 @@ while (($line = fgetcsv($file)) !== FALSE) {
 #print_r($data_ary[1]);
 //echo $data_ary['a'];
 #print_r($data_ary['a']);
-echo array_rand($data_ary['a'], 1);
-fclose($file);
-try {
-  echo "hi";
-} catch (Exception $e) {
-  echo "awww";
-}
+// echo array_rand($data_ary['a'], 1);
+// fclose($file);
+// try {
+//   echo "hi";
+// } catch (Exception $e) {
+//   echo "awww";
+// }
 
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -48,7 +48,14 @@ if (!is_null($events['events'])) {
 			//($data_ary[0])[0])   $data_ary[$j][0])
 			//[($data_ary[0])[1]
 		      try {
-			  echo "hi";
+			  $messages = [
+			    'type' => 'text',
+			    'text' => array_rand($data_ary[$text], 1);
+			  ];
+			  $data = [
+			    'replyToken' => $replyToken,
+			    'messages' => [$messages],
+			  ];
 		      } catch (Exception $e) {
 			  echo "awww";
 		      }
