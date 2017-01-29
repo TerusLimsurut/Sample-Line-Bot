@@ -18,7 +18,7 @@ $file = fopen('Train_message_2.csv', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
 }
-#print_r($data_ary["555"]);
+print_r($data_ary["แอล"]);
 //echo $data_ary['a'];
 //print_r($data_ary['a']);
 //echo $data_ary['b'][array_rand($data_ary['b'], 1)];
