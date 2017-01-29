@@ -80,16 +80,17 @@ if (!is_null($events['events'])) {
 			    'replyToken' => $replyToken,
 			    'messages' => [$messages]
 			 ];
-			} else{
-			    $messages = [
-			    'type' => 'text',
-			    'text' => "TeachMe"
-			  ];
-			 $data = [
-			    'replyToken' => $replyToken,
-			    'messages' => [$messages]
-			 ];
-			}
+			} 
+// 			else{
+// 			    $messages = [
+// 			    'type' => 'text',
+// 			    'text' => "TeachMe"
+// 			  ];
+// 			 $data = [
+// 			    'replyToken' => $replyToken,
+// 			    'messages' => [$messages]
+// 			 ];
+// 			}
 			
 // 			$data = [
 // 			    'replyToken' => $replyToken,
