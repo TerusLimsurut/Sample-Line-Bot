@@ -40,7 +40,8 @@ if (is_writable($filename)) {
         echo "Cannot write to file ($filename)";
         exit;
     }
-
+	$handle = fopen($filename, 'w');
+	fwrite($handle, $somecontent);
     echo "Success, wrote ($somecontent) to file ($filename)";
 
     fclose($handle);
