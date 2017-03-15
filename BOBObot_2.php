@@ -8,7 +8,7 @@ $events = json_decode($content, true);
 //Train_message
 $file = fopen('Train_message_2.csv', 'r');
 #$log_out = fopen('Log_chat.csv', 'a');
-$log_out = fopen('Log_chat.txt', 'a');
+$log_out = fopen('Log_chat_2.txt', 'a');
 
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
