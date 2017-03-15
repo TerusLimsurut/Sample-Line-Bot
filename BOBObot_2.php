@@ -46,11 +46,9 @@ if (!is_null($events['events'])) {
 					    'type' => 'text',
 					    'text' => "TeachMe"
 					];
-					$temp_out = "TeachMe"
+					$temp_out = "TeachMe";
 				}
-			
-			//fclose($log_out);
-			
+						
 			 $data = [
 			    'replyToken' => $replyToken,
 			    'messages' => [$messages]
@@ -75,4 +73,5 @@ fwrite($log_out, $temp_in);
 fwrite($log_out, ',');
 fwrite($log_out, $temp_out);
 fwrite($log_out, '\n');
+fclose($log_out);
 echo "OK";
