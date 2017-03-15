@@ -8,7 +8,7 @@ $events = json_decode($content, true);
 //Train_message
 $file = fopen('Train_message_2.csv', 'r');
 #$log_out = fopen('Log_chat.csv', 'a');
-$log_out = fopen('Log_chat_2.txt', 'w');
+//$log_out = fopen('Log_chat_2.txt', 'w');
 
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
@@ -16,10 +16,38 @@ while (($line = fgetcsv($file)) !== FALSE) {
 $temp_in = 'ask';
 $temp_out = 'ans';
 //fwrite($log_out, $temp_in);
-fwrite($log_out, 'ask');
+//fwrite($log_out, 'ask');
 //fwrite($log_out, $temp_out);
 //fwrite($log_out, '\n');
-fclose($log_out);
+//fclose($log_out);
+
+$filename = 'Log_chat_2.txt';
+$somecontent = "Add this to the file\n";
+
+// Let's make sure the file exists and is writable first.
+if (is_writable($filename)) {
+
+    // In our example we're opening $filename in append mode.
+    // The file pointer is at the bottom of the file hence
+    // that's where $somecontent will go when we fwrite() it.
+    if (!$handle = fopen($filename, 'a')) {
+         echo "Cannot open file ($filename)";
+         exit;
+    }
+
+    // Write $somecontent to our opened file.
+    if (fwrite($handle, $somecontent) === FALSE) {
+        echo "Cannot write to file ($filename)";
+        exit;
+    }
+
+    echo "Success, wrote ($somecontent) to file ($filename)";
+
+    fclose($handle);
+
+} else {
+    echo "The file $filename is not writable";
+}
 
 
 if (!is_null($events['events'])) {
