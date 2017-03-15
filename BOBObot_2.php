@@ -13,7 +13,8 @@ $log_out = fopen('Log_chat_2.txt', 'a');
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
 }
-
+$temp_in = 'ask';
+$temp_out = 'ans';
 
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -22,6 +23,7 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
+			$temp_in = $text
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
@@ -31,8 +33,6 @@ if (!is_null($events['events'])) {
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-			fwrite($log_out, $text);
-			fwrite($log_out, ',');
 			
 			if (in_array($data_ary[$text], $data_ary)) {
 				if (strlen($data_ary[$text][array_rand($data_ary[$text], 1)])>1){
@@ -40,15 +40,15 @@ if (!is_null($events['events'])) {
 					    'type' => 'text',
 					    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
 					  ];
+					$temp_out = $data_ary[$text][array_rand($data_ary[$text], 1)];
 				} else{
 					$messages = [
 					    'type' => 'text',
 					    'text' => "TeachMe"
 					];
+					$temp_out = "TeachMe"
 				}
 			
-			fwrite($log_out, $messages);
-			fwrite($log_out, '\n');
 			//fclose($log_out);
 			
 			 $data = [
@@ -71,4 +71,8 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
+fwrite($log_out, $temp_in);
+fwrite($log_out, ',');
+fwrite($log_out, $temp_out);
+fwrite($log_out, '\n');
 echo "OK";
