@@ -7,7 +7,7 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 //Train_message
 $file = fopen('Train_message_2.csv', 'r');
-$log_out = fopen('Log_chat.csv','a')
+$log_out = fopen('Log_chat.csv', 'a');
 
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
@@ -30,7 +30,7 @@ if (!is_null($events['events'])) {
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-			fwrite($log_out, $messages);
+			fwrite($log_out, $text);
 			fwrite($log_out, ',');
 			
 			if (in_array($data_ary[$text], $data_ary)) {
