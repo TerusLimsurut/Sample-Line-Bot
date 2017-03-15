@@ -8,13 +8,18 @@ $events = json_decode($content, true);
 //Train_message
 $file = fopen('Train_message_2.csv', 'r');
 #$log_out = fopen('Log_chat.csv', 'a');
-$log_out = fopen('Log_chat_2.txt', 'a');
+$log_out = fopen('Log_chat_2.txt', 'w');
 
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
 }
 $temp_in = 'ask';
 $temp_out = 'ans';
+fwrite($log_out, $temp_in);
+fwrite($log_out, ',');
+fwrite($log_out, $temp_out);
+fwrite($log_out, '\n');
+
 
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -74,4 +79,6 @@ fwrite($log_out, ',');
 fwrite($log_out, $temp_out);
 fwrite($log_out, '\n');
 fclose($log_out);
+fclose($file);
+
 echo "OK";
