@@ -15,10 +15,11 @@ while (($line = fgetcsv($file)) !== FALSE) {
 }
 $temp_in = 'ask';
 $temp_out = 'ans';
-fwrite($log_out, $temp_in);
-fwrite($log_out, ',');
-fwrite($log_out, $temp_out);
-fwrite($log_out, '\n');
+//fwrite($log_out, $temp_in);
+fwrite($log_out, 'ask');
+//fwrite($log_out, $temp_out);
+//fwrite($log_out, '\n');
+fclose($log_out);
 
 
 if (!is_null($events['events'])) {
@@ -74,11 +75,11 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
-fwrite($log_out, $temp_in);
-fwrite($log_out, ',');
-fwrite($log_out, $temp_out);
-fwrite($log_out, '\n');
-fclose($log_out);
+//fwrite($log_out, $temp_in);
+//fwrite($log_out, ',');
+//fwrite($log_out, $temp_out);
+//fwrite($log_out, '\n');
+//fclose($log_out);
 fclose($file);
 
 echo "OK";
