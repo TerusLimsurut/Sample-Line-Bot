@@ -5,7 +5,7 @@ $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 
-$file = fopen('Train_message_2.csv', 'r'); //mode1
+$file = fopen('Train_message_2.txt', 'r'); //mode1
 //$joke = fopen() //mode2
 
 while (($line = fgetcsv($file)) !== FALSE) {
