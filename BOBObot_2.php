@@ -1,38 +1,68 @@
 <?php
-require_once "dropbox-sdk/Dropbox/autoload.php";
-use \Dropbox as dbx;
+$access_token = '3NSrwxoBmoc/JzYfi/TeeAWDfjMXPkl+pK2smX+/wlptcnGgM/ysws0jfUfuaXInCd8/tPGW4MhzFYTyXlGB/8Ue8p8irgrbaXnFk8dz6vGieKqDaPgzPfI2SgrjG7f+dJ9+J+sbGISzY+GGSa07gwdB04t89/1O/w1cDnyilFU=';
+// Get POST body content
+$content = file_get_contents('php://input');
+// Parse JSON
+$events = json_decode($content, true);
 
-$appInfo = dbx\AppInfo::loadFromJsonFile("app-info.json");
-$webAuth = new dbx\WebAuthNoRedirect($appInfo, "PHP-Example/1.0");
+$file = fopen('Train_message_2.csv', 'r'); //mode1
+//$joke = fopen() //mode2
 
-$authorizeUrl = $webAuth->start();
+while (($line = fgetcsv($file)) !== FALSE) {
+  $data_ary[$line[0]]=array_slice($line, 1);
+}
 
-/* echo "1. Go to: " . $authorizeUrl . "\n";
-echo "2. Click \"Allow\" (you might have to log in first).\n";
-echo "3. Copy the authorization code.\n";
-$authCode = \trim(\readline("Enter the authorization code here: ")); */ */
-$authCode = "ZWWddZktyTgAAAAAAAAF1lQXrfv-_8Bv-EGyNDclX7E"
-list($accessToken, $dropboxUserId) = $webAuth->finish($authCode);
-print "Access Token: " . $accessToken . "\n";
+// if (in_array($data_ary["แอล"], $data_ary)) {
+// 	print_r($data_ary["แอล"]);
 
-echo $accessToken;
-/* $dbxClient = new dbx\Client($accessToken, "PHP-Example/1.0");
-$accountInfo = $dbxClient->getAccountInfo();
+if (!is_null($events['events'])) {
+	// Loop through each event
+	foreach ($events['events'] as $event) {
+		// Reply only when message sent is in 'text' format
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			// Get text sent
+			$text = $event['message']['text'];
+			// Get replyToken
+			$replyToken = $event['replyToken'];
+			// Build message to reply back
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
+			// Make a POST Request to Messaging API to reply to sender
+			$url = 'https://api.line.me/v2/bot/message/reply';
+			
+			if (in_array($data_ary[$text], $data_ary)) {
+				if (strlen($data_ary[$text][array_rand($data_ary[$text], 1)])>1){
+					$messages = [
+					    'type' => 'text',
+					    'text' => $data_ary[$text][array_rand($data_ary[$text], 1)]
+					  ];
+				} else{
+					$messages = [
+					    'type' => 'text',
+					    'text' => "TeachMe"
+					];
+				}
 
-print_r($accountInfo);
-
-$f = fopen("working-draft.txt", "w");
-$somecontent = "Add this to the file\n";
-fwrite($f, $somecontent)
-$result = $dbxClient->uploadFile("/working-draft.txt", dbx\WriteMode::add(), $f);
-fclose($f);
-print_r($result);
-
-$folderMetadata = $dbxClient->getMetadataWithChildren("/");
-print_r($folderMetadata);
-
-$f = fopen("working-draft.txt", "w");
-$fileMetadata = $dbxClient->getFile("/working-draft.txt", $f);
-fclose($f);
-print_r($fileMetadata); */
-?>
+			 $data = [
+			    'replyToken' => $replyToken,
+			    'messages' => [$messages]
+			 ];
+			} 
+			
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			echo $result . "\r\n";
+		}
+	}
+}
+echo "OK";
