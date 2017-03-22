@@ -11,7 +11,9 @@ $file = fopen('Train_message_2.csv', 'r');
 //$log_out = fopen('Log_chat_2.txt', 'w');
 
 while (($line = fgetcsv($file)) !== FALSE) {
-  $data_ary[$line[0]]=array_slice($line, 1);
+	if (($key = array_search('', $line)) !== false) {
+    unset($line[$key]);}
+	$data_ary[$line[0]]=array_slice($line);
 }
 $temp_in = 'ask';
 $temp_out = 'ans';
