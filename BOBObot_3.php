@@ -13,7 +13,7 @@ $file = fopen('Train_message_2.txt', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
 	if (($key = array_search('', $line)) !== false) {
     unset($line[$key]);}
-	$data_ary[$line[0]]=array_slice($line);
+	$data_ary[$line[0]]=array_slice($line,1);
 }
 $temp_in = 'ask';
 $temp_out = 'ans';
