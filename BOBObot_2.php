@@ -5,7 +5,7 @@ $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 
-$file = fopen('Train_message_2_2_2.csv', 'r');
+$file = fopen('Train_message_2_2_2_2.csv', 'r');
 
 while (($line = fgetcsv($file)) !== FALSE) {
   $data_ary[$line[0]]=array_slice($line, 1);
