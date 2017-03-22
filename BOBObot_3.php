@@ -6,13 +6,13 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 //Train_message
-$file = fopen('Train_message_2.txt', 'r');
+$file = fopen('Train_message_2.csv', 'r');
 #$log_out = fopen('Log_chat.csv', 'a');
 //$log_out = fopen('Log_chat_2.txt', 'w');
 
 while (($line = fgetcsv($file)) !== FALSE) {
-	if (($key = array_search('', $line)) !== false) {
-    unset($line[$key]);}
+	//if (($key = array_search('', $line)) !== false) {
+    //unset($line[$key]);}
 	$data_ary[$line[0]]=array_slice($line,1);
 }
 $temp_in = 'ask';
