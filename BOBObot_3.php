@@ -6,7 +6,7 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 //Train_message
-$file = fopen('Train_message_2.csv', 'r');
+$file = fopen('Train_message_2.txt', 'r');
 #$log_out = fopen('Log_chat.csv', 'a');
 //$log_out = fopen('Log_chat_2.txt', 'w');
 
